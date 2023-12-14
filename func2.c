@@ -40,13 +40,13 @@ void error_exit(stack_t **stk)
  */
 int isnum(char *str)
 {
-	unsignedint inc = 0;
+	unsigned int inc = 0;
 
 	if (!str)
 	{
 		return (0);
 	}
-	for (; str[i]; inc++)
+	for (; str[inc]; inc++)
 	{
 		if (str[0] == '-')
 		{
