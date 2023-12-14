@@ -46,7 +46,7 @@ int isnum(char *str)
 	{
 		return (0);
 	}
-	for (; str[inc]; inc++)
+	while (str[inc])
 	{
 		if (str[0] == '-')
 		{
@@ -55,6 +55,7 @@ int isnum(char *str)
 		}
 		if (!isdigit(str[inc]))
 			return (0);
+		inc++;
 	}
 	return (1);
 }

@@ -1,127 +1,120 @@
-#include "monty"
+#include "monty.h"
 /**
- * _push - push int to a stack
- * @stack: linked list for nonty stack
- * @line_number: number of line opcode occurs on
+ * push - push int
+ *
+ * @stk: Data type
+ *
+ * @line_num: Data type
  */
-void _push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stk, unsigned int line_num)
 {
-	stack_t *new;
-	char *arg;
-	int push_arg;
+	stack_t *mem;
+	char *argt;
+	int push_arg = 0;
 
-	push_arg = 0;
-	new = malloc(sizeof(stack_t));
-	if (!new)
+	mem = malloc(sizeof(stack_t));
+	if (!mem)
 	{
 		printf("Error: malloc failed\n");
-		error_exit(stack);
+		error_exit(stk);
 	}
 
-	arg = strtok(NULL, "\n");
-	if (isnumber(arg) == 1 && arg != NULL)
+	argt = strtok(NULL, "\n");
+	if (isnum(argt) == 1 && argt)
 	{
-		push_arg = atoi(arg);
+		push_arg = atoi(argt);
 	}
 	else
 	{
-		printf("L%d: usage: push integer\n", line_number);
-		error_exit(stack);
+		printf("L%d: usage: push integer\n", line_num);
+		error_exit(stk);
 	}
 
-	if (sq_flag == 1)
+	if (flag == 1)
 	{
-		add_dnodeint_end(stack, push_arg);
+		add_end(stk, push_arg);
 	}
 
-	if (sq_flag == 0)
+	if (flag == 0)
 	{
-		add_dnodeint(stack, push_arg);
+		add_int(stk, push_arg);
 	}
 
 }
 /**
- * _pall - print all function
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * pall - print
+ *
+ * @stack: Data type
+ *
+ * @line_number: Data type
  */
-void _pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
+void pall(stack_t **stk, __attribute__ ((unused))unsigned int line_num)
 {
-	stack_t *runner;
+	stack_t *runr;
 
-	runner = *stack;
-	while (runner != NULL)
+	runner = *stk;
+	while (runr != NULL)
 	{
-		Printf("%d\n", runner->n);
-		runner = runner->next;
+		printf("%d\n", runr->n);
+		runr = runr->next;
 	}
 }
 /**
- * _pint - print int a top of stack
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * pint - print int
+ *
+ * @stk: Data type
+ *
+ * @line_num: Data type
  *
  */
-void _pint(stack_t **stack, unsigned int line_number)
+void pint(stack_t **stk, unsigned int line_num)
 {
-	stack_t *runner;
+	stack_t *runr;
 
-	runner = *stack;
-	if (runner == NULL)
+	runr = *stk;
+	if (runr == NULL)
 	{
-		printf("L%d: can't pint, stack empty\n", line_number);
-		erroe_exist(stack);
+		printf("L%d: can't pint, stack empty\n", line_num);
+		error_exit(stk);
 	}
-	printf("%d\n", runner->n);
+	printf("%d\n", runr->n);
 }
 /**
- * _swap - swap top of stack and second top of stack
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * swap - swap stack
+ *
+ * @stk: Data type
+ *
+ * @line_num: Data type
  *
  */
-void _swap(stack_t **stack, unsigned int line_number)
+void swap(stack_t **stk, unsigned int line_num)
 {
-	stack_t *runner;
-	int tmp;
+	stack_t *runr;
+	int temp;
 
-	runner = *stack;
-	if (runner == NULL || runner->next == NULL)
+	runr = *stk;
+	if (!runr || !runr->next)
 	{
-		printf("L%d: can't swap, stack too short\n", line_number);
-		error_exit(stack);
+		printf("L%d: can't swap, stack too short\n", line_num);
+		error_exit(stk);
 	}
-	tmp = runner->n;
-	runner->n = runner->next->n;
-	runner->next->n = tmp;
+	tmp = runr->n;
+	runr->n = runr->next->n;
+	runr->next->n = temp;
 }
 /**
- * _pop - delete item at top of stack
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * pop - delete
+ *
+ * @stack: Data type
+ *
+ * @line_num: Data type
  */
-void _pop(stack_t **stack, unsigned int line_number)
+void pop(stack_t **stk, unsigned int line_num)
 {
-	if (*stack == NULL)
+	if (!*stk)
 	{
-		printf("L%d: can't pop an empty stack too short\n", line_number);
-		error_exit(stack);
+		printf("L%d: can't pop an empty stack\n", line_num);
+		error_exit(stk);
 	}
-	tmp = runner->n;
-	runner-> = runner->next->n;
-	runner->next->n =tmp;
-}
-/**
- * _pop -delete item at top of stack
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
- */
-void _pop(stack_t **stack, unsigned int line_number)
-{
-	if (*stack == NULL)
-	{
-		printf("L%d: can't pop an empty stack\n", line_number);
-		error_exit(stack);
-	}
-	delete_dnodeint_at_index(stack, 0);
+	del_at_index(stk, 0);
 }

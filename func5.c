@@ -17,14 +17,14 @@ void file_read(char *filename, stack_t **stk)
 	int ln_cnt = 1;
 	FILE *file = fopen(filename, "r");
 
-	if (file = NULL)
+	if (file == NULL)
 	{
 		printf("Error: Can't open file %s\n", filename);
 		error_exit(stk);
 	}
 	while ((rd = getline(&bfr, &v, file)) != -1)
 	{
-		ln = parse_line(bfr);
+		ln = line_prse(bfr);
 		if (ln == NULL || ln[0] == '#')
 		{
 			ln_cnt += 1;
@@ -44,4 +44,46 @@ void file_read(char *filename, stack_t **stk)
 	if (chk == -1)
 		exit(-1);
 }
+/**
+ * line_prse - parse
+ *
+ * @line: Data type
+ *
+ * Return: 0
+ */
+char *line_prse(char *line)
+{
+	char *cd = strtok(line, "\n ");
+	if (!cd)
+	{
+		return (NULL);
+	}
+	return (cd);
+}
+/**
+ * inst_func - opcheck
+ *
+ * @str: Data type
+ *
+ * Return func
+ */
 
+inst_func get_op(char *str)
+{
+	int inc = 0;
+
+	instruction_t inst[] = {
+		{"push", push},
+		{"pall", pall},
+		{"pint", pint},
+		{"add", add},
+		{"pop", pop},
+		{"swap", swap},
+		{NULL, NULL},
+	};
+	while (inst[inc].f != NULL && strcmp(inst[inc].opcode, str) != 0)
+	{
+		inc += 1;
+	}
+	return (inst[inc].f);
+}
