@@ -54,6 +54,7 @@ void file_read(char *filename, stack_t **stk)
 char *line_prse(char *line)
 {
 	char *cd = strtok(line, "\n ");
+
 	if (!cd)
 	{
 		return (NULL);
@@ -61,11 +62,11 @@ char *line_prse(char *line)
 	return (cd);
 }
 /**
- * inst_func - opcheck
+ * get_op - opcheck
  *
  * @str: Data type
  *
- * Return func
+ * Return: func
  */
 
 inst_func get_op(char *str)

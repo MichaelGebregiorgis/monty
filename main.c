@@ -1,5 +1,4 @@
 #include "monty.h"
-int flag = 0;
 /**
  * main - monty program
  *

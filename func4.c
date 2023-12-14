@@ -44,9 +44,9 @@ void push(stack_t **stk, unsigned int line_num)
 /**
  * pall - print
  *
- * @stack: Data type
+ * @stk: Data type
  *
- * @line_number: Data type
+ * @line_num: Data type
  */
 void pall(stack_t **stk, __attribute__ ((unused))unsigned int line_num)
 {
@@ -105,7 +105,7 @@ void swap(stack_t **stk, unsigned int line_num)
 /**
  * pop - delete
  *
- * @stack: Data type
+ * @stk: Data type
  *
  * @line_num: Data type
  */
