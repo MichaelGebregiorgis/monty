@@ -1,3 +1,4 @@
+#define _GNU_SOURCE
 #include "monty.h"
 /**
  * file_read - reads file
@@ -22,6 +23,7 @@ void file_read(char *filename, stack_t **stk)
 		printf("Error: Can't open file %s\n", filename);
 		error_exit(stk);
 	}
+	rd = getline(&bfr, &v, file);
 	while ((rd = getline(&bfr, &v, file)) != -1)
 	{
 		ln = line_prse(bfr);

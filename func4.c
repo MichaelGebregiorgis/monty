@@ -52,7 +52,7 @@ void pall(stack_t **stk, __attribute__ ((unused))unsigned int line_num)
 {
 	stack_t *runr;
 
-	runner = *stk;
+	runr = *stk;
 	while (runr != NULL)
 	{
 		printf("%d\n", runr->n);
@@ -98,7 +98,7 @@ void swap(stack_t **stk, unsigned int line_num)
 		printf("L%d: can't swap, stack too short\n", line_num);
 		error_exit(stk);
 	}
-	tmp = runr->n;
+	temp = runr->n;
 	runr->n = runr->next->n;
 	runr->next->n = temp;
 }
